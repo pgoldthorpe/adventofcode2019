@@ -9,20 +9,21 @@ def main():
     series = [(0,0)]
     
     for item in wire:
-      if item[0] == 'R':
-        for i in range(int(item[1:])):
+      direction, steps = item[0], int(item[1:])
+      if direction == 'R':
+        for i in range(steps):
           x+=1
           series.append((x,y))
-      if item[0] == 'U':
-        for i in range(int(item[1:])):
+      if direction == 'U':
+        for i in range(steps):
           y+=1
           series.append((x,y))
-      if item[0] == 'L':
-        for i in range(int(item[1:])):
+      if direction == 'L':
+        for i in range(steps):
           x-=1
           series.append((x,y))
-      if item[0] == 'D':
-        for i in range(int(item[1:])):
+      if direction == 'D':
+        for i in range(steps):
           y-=1
           series.append((x,y))
     return series
@@ -30,11 +31,11 @@ def main():
   wire1points = points(wire1)
   wire2points = points(wire2)
 
-  collision = set(wire1points).intersection(set(wire2points)) - {(0,0)}
-  solution1 = min([abs(i[0]) + abs(i[1]) for i in collision])
+  collision_points = set(wire1points).intersection(set(wire2points)) - {(0,0)}
+  solution1 = min([abs(i[0]) + abs(i[1]) for i in collision_points])
 
-  steps = {item: wire1points.index(item) + wire2points.index(item) for item in collision}
-  solution2 = min(steps.values())
+  steps = {wire1points.index(point) + wire2points.index(point) for point in collision_points}
+  solution2 = min(steps)
 
   if __name__ == "__main__":
     print("Solution to problem 1 is {}".format(solution1))
