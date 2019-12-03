@@ -24,6 +24,7 @@ class Advent:
 
         input_url = "https://adventofcode.com/{}/day/{}/input".format(self.year, self.day)
         result = requests.get(input_url, cookies={'session': self.session})
+        print(self.session)
         if result.status_code == 200:
             self.input_data = result.text
             with open(self.input_filename, 'w') as f:

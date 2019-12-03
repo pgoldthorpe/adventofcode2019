@@ -1,5 +1,5 @@
 def main():
-  with open('../input/day01.txt') as f:
+  with open('../input/input01.txt') as f:
     mass = [int(i) for i in f.read().splitlines()]
 
     def fuel(value):

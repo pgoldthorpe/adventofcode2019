@@ -1,5 +1,5 @@
 def main():
-  with open('../input/day02.txt') as f:
+  with open('../input/input02.txt') as f:
     input_file = [int(i) for i in f.read().split(',')]
 
   def intcode(noun=12, verb=1):
