@@ -2,14 +2,14 @@ def main():
   with open('../input/input04.txt','r') as f:
     lower, upper = [int(i) for i in f.read().replace('\n','').split('-')]
     
-    counter = set()
-    for i in range(10):
-        for j in range(i,10):
-            for k in range(j,10):
-                for l in range(k,10):
-                    for m in range(l,10):
-                        for n in range(m,10):
-                            counter.add(str(i)+str(j)+str(k)+str(l)+str(m)+str(n))
+    counter = { str(i)+str(j)+str(k)+str(l)+str(m)+str(n)
+      for i in range(10)
+      for j in range(i,10)
+      for k in range(j,10)
+      for l in range(k,10)
+      for m in range(l,10)
+      for n in range(m,10)
+    }
     
     def doubles(x='123455'):
         for i in range(len(x)-1):
@@ -25,8 +25,8 @@ def main():
                 return True
         return False
 
-    solution1 = len([i for i in counter if doubles(i) and lower<int(i)<upper])
-    solution2 = len([i for i in counter if notriples(i) and lower<int(i)<upper])
+    solution1 = len({i for i in counter if doubles(i) and lower<int(i)<upper})
+    solution2 = len({i for i in counter if notriples(i) and lower<int(i)<upper})
   
     if __name__ == "__main__":
       print("Solution to problem 1 is {}".format(solution1))
